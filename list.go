@@ -55,3 +55,13 @@ func (l *List[T]) String() string {
 		return fmt.Sprintf("%s %v", acc, item)
 	}) + ")"
 }
+
+// Iter calls a function for each element of a list.
+// Useful for side effects.
+func (l *List[T]) Iter(f func(T)) {
+	if l == nil {
+		return
+	}
+	f(l.Head())
+	l.Rest().Iter(f)
+}
