@@ -37,3 +37,11 @@ func Filter[T any](l *List[T], f func(item T) bool) *List[T] {
 
 	return Filter(l.Rest(), f)
 }
+
+// Zip returns a new list with the elements of two lists combined into pairs.
+func Zip[A, B any](a *List[A], b *List[B]) *List[Pair[A, B]] {
+	if a == nil || b == nil {
+		return nil
+	}
+	return &List[Pair[A, B]]{NewPair(a.Head(), b.Head()), Zip(a.Rest(), b.Rest())}
+}
