@@ -46,7 +46,9 @@ func Zip[A, B any](a *List[A], b *List[B]) *List[Pair[A, B]] {
 	return &List[Pair[A, B]]{NewPair(a.Head(), b.Head()), Zip(a.Rest(), b.Rest())}
 }
 
-// All returns true if all elements of a list satisfy a predicate function.
+// All returns Option[True] if all elements of a list satisfy a predicate function.
+// Otherwise, it returns Option[False].
+// Returns None if the list is empty.
 func All[T any](l *List[T], f func(item T) bool) Option[bool] {
 	if l == nil {
 		return None[bool]()
@@ -57,4 +59,16 @@ func All[T any](l *List[T], f func(item T) bool) Option[bool] {
 	}
 
 	return All(l.Rest(), f)
+}
+
+func Any[T any](l *List[T], f func(item T) bool) Option[bool] {
+	if l == nil {
+		return None[bool]()
+	}
+
+	if f(l.Head()) {
+		return Some(true)
+	}
+
+	return Any(l.Rest(), f)
 }
