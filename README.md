@@ -1,6 +1,5 @@
 # FUNCTIONAL GOLANG
-[]: # (Author): Zihan Jin
-[]: # (Date): 2024-08-11
+This is a library of functional programming in Golang.
 
 
 # MANIFESTO
