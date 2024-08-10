@@ -1,9 +1,8 @@
 package fn
 
-type List[T any] struct {
-	a T
-	b *List[T]
-}
+import "fmt"
+
+type List[T any] Pair[T, *List[T]]
 
 func NewList[T any](s ...T) *List[T] {
 	if len(s) == 0 {
@@ -42,4 +41,17 @@ func (l *List[T]) ToSlice() []T {
 	}
 
 	return append([]T{a}, b.ToSlice()...)
+}
+
+func (l *List[T]) String() string {
+	if l == nil {
+		return "()"
+	}
+
+	return Fold(l, "(", func(acc string, item T) string {
+		if acc == "(" {
+			return fmt.Sprintf("%s%v", acc, item)
+		}
+		return fmt.Sprintf("%s %v", acc, item)
+	}) + ")"
 }
