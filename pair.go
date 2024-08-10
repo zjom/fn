@@ -1,18 +1,24 @@
 package fn
 
-type Pair[T any] struct {
-	a T
-	b T
+import "fmt"
+
+type Pair[A, B any] struct {
+	a A
+	b B
 }
 
-func NewPair[T any](a, b T) Pair[T] {
-	return Pair[T]{a: a, b: b}
+func NewPair[A, B any](a A, b B) Pair[A, B] {
+	return Pair[A, B]{a: a, b: b}
 }
 
-func (p Pair[T]) First() T {
+func (p Pair[A, _]) First() A {
 	return p.a
 }
 
-func (p Pair[T]) Second() T {
+func (p Pair[_, B]) Second() B {
 	return p.b
+}
+
+func (p Pair[A, B]) String() string {
+	return fmt.Sprintf("(%v %v)", p.a, p.b)
 }
