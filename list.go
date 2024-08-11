@@ -19,11 +19,11 @@ func NewListFromSlice[T any](s []T) *List[T] {
 }
 
 func (l *List[T]) Head() T {
-	return l.a
+	return l.A
 }
 
 func (l *List[T]) Rest() *List[T] {
-	return l.b
+	return l.B
 }
 
 func (l *List[T]) Cons(a T) *List[T] {
