@@ -48,12 +48,7 @@ func (l *List[T]) String() string {
 		return "()"
 	}
 
-	return Fold(l, "(", func(acc string, item T) string {
-		if acc == "(" {
-			return fmt.Sprintf("%s%v", acc, item)
-		}
-		return fmt.Sprintf("%s %v", acc, item)
-	}) + ")"
+	return fmt.Sprintf("(%v %v)", l.Head(), l.Rest())
 }
 
 // Iter calls a function for each element of a list.
