@@ -1,13 +1,14 @@
-package fn_test
+package list_test
 
 import (
 	"github.com/zjom/fn"
+	"github.com/zjom/fn/list"
 	"testing"
 )
 
 func TestFold(t *testing.T) {
-	list := fn.NewList(1, 2, 3, 4, 5)
-	sum := fn.Fold(list, 0, func(a, b int) int {
+	xs := fn.NewList(1, 2, 3, 4, 5)
+	sum := list.Fold(xs, 0, func(a, b int) int {
 		return a + b
 	})
 
@@ -17,8 +18,8 @@ func TestFold(t *testing.T) {
 }
 
 func TestMap(t *testing.T) {
-	list := fn.NewList(1, 2, 3, 4, 5)
-	squared := fn.Map(list, func(a int) int {
+	xs := fn.NewList(1, 2, 3, 4, 5)
+	squared := list.Map(xs, func(a int) int {
 		return a * a
 	})
 
@@ -28,8 +29,8 @@ func TestMap(t *testing.T) {
 }
 
 func TestFilter(t *testing.T) {
-	list := fn.NewList(1, 2, 3, 4, 5)
-	evens := fn.Filter(list, func(a int) bool {
+	xs := fn.NewList(1, 2, 3, 4, 5)
+	evens := list.Filter(xs, func(a int) bool {
 		return a%2 == 0
 	})
 
@@ -39,8 +40,8 @@ func TestFilter(t *testing.T) {
 }
 
 func TestReduce(t *testing.T) {
-	list := fn.NewList(1, 2, 3, 4, 5)
-	sum := fn.Reduce(list, func(acc int, item int) int {
+	xs := fn.NewList(1, 2, 3, 4, 5)
+	sum := list.Reduce(xs, func(acc int, item int) int {
 		return acc + item
 	})
 	if sum != 15 {
@@ -49,9 +50,9 @@ func TestReduce(t *testing.T) {
 }
 
 func TestZip(t *testing.T) {
-	list1 := fn.NewList(1, 2, 3)
-	list2 := fn.NewList(4, 5, 6)
-	zipped := fn.Zip(list1, list2)
+	xs1 := fn.NewList(1, 2, 3)
+	xs2 := fn.NewList(4, 5, 6)
+	zipped := list.Zip(xs1, xs2)
 
 	if zipped.String() != "((1 4) (2 5) (3 6))" {
 		t.Errorf("Expected ((1 4) (2 5) (3 6)), got %s", zipped.String())
