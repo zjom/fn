@@ -1,10 +1,3 @@
-# FUNCTIONAL GOLANG
-This is a library of functional programming in Golang.
+# FUNCTIONAL HELPERS
 
-
-# MANIFESTO
-  No loops
-  No ifs without else
-  No side effects
-  No assignments in functions
-  No arrays
+Library of helper functions for the functional programming paradigm in go.
