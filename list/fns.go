@@ -14,11 +14,12 @@ func Map[T, R any](l *fn.List[T], f func(item T) R) *fn.List[R] {
 }
 
 // Reduce applies an accumulator function to each element of a list and returns the final accumulator value.
-func Reduce[T any](l *fn.List[T], f func(acc T, item T) T) T {
+func Reduce[T, R any](l *fn.List[T], f func(acc R, item T) R) R {
 	if l == nil {
-		var v T
+		var v R
 		return v
 	}
+
 	return f(Reduce(l.Rest(), f), l.Head())
 }
 
