@@ -5,7 +5,8 @@ func Map[T, R any](l *List[T], f func(item T) R) *List[R] {
 	if l == nil {
 		return nil
 	}
-	return &List[R]{f(l.Head()), Map(l.Rest(), f)}
+
+	return &List[R]{a: f(l.a), b: Map(l.b, f)}
 }
 
 // Reduce applies an accumulator function to each element of a list and returns the final accumulator value.

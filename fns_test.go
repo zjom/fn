@@ -40,10 +40,9 @@ func TestFilter(t *testing.T) {
 
 func TestReduce(t *testing.T) {
 	list := fn.NewList(1, 2, 3, 4, 5)
-	sum := fn.Reduce(list, func(a, b int) int {
-		return a + b
+	sum := fn.Reduce(list, func(acc int, item int) int {
+		return acc + item
 	})
-
 	if sum != 15 {
 		t.Errorf("Expected 15, got %d", sum)
 	}
